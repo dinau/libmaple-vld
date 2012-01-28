@@ -8,6 +8,7 @@ DEST=$1
 
 DEST_CORES=$DEST/hardware/leaflabs/cores/maple
 DEST_LIBS=$DEST/libraries
+DEST_TOOLS=$DEST/hardware/tools
 
 LMAPLE_SRC="LICENSE
     ./libmaple/*.h
@@ -31,6 +32,9 @@ LMAPLE_SRC="LICENSE
     ./support/ld/maple_mini
     ./support/ld/maple_native
     ./support/ld/maple_RET6
+    ./support/ld/STbee
+    ./support/ld/STBeeMini
+    ./support/ld/STM32VLD
     ./support/ld/names.inc"
 
 echo "First make sure DEST exists: $DEST"
@@ -48,6 +52,9 @@ cp -R $LMAPLE_SRC $DEST_CORES
 
 echo Copying over libraries
 cp -R libraries/* $DEST_LIBS
+
+echo Copying over tools
+cp -R tools/* $DEST_TOOLS
 
 # libmaple version
 echo Creating libmaple-version.txt

@@ -108,7 +108,7 @@ void HardwareSPI::begin(SPIFrequency frequency, uint32 bitOrder, uint32 mode) {
 }
 
 void HardwareSPI::begin(void) {
-    this->begin(SPI_1_125MHZ, MSBFIRST, 0);
+    this->begin(SPI_DEFAULT_CLOCK, MSBFIRST, 0);
 }
 
 void HardwareSPI::beginSlave(uint32 bitOrder, uint32 mode) {
@@ -308,6 +308,9 @@ static const spi_baud_rate baud_rates[MAX_SPI_FREQS] __FLASH__ = {
  * (CYCLES_PER_MICROSECOND == 72, APB2 at 72MHz, APB1 at 36MHz).
  */
 static spi_baud_rate determine_baud_rate(spi_dev *dev, SPIFrequency freq) {
+#if defined( BOARD_STM32VLD )
+	return baud_rates[freq];
+#else
     if (rcc_dev_clk(dev->clk_id) == RCC_APB2 && freq == SPI_140_625KHZ) {
         /* APB2 peripherals are too fast for 140.625 KHz */
         ASSERT(0);
@@ -316,4 +319,5 @@ static spi_baud_rate determine_baud_rate(spi_dev *dev, SPIFrequency freq) {
     return (rcc_dev_clk(dev->clk_id) == RCC_APB2 ?
             baud_rates[freq + 1] :
             baud_rates[freq]);
+#endif
 }

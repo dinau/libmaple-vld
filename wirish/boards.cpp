@@ -58,7 +58,9 @@ void init(void) {
     afio_init();
     setupADC();
     setupTimers();
+#if !defined(BOARD_STM32VLD)
     usb_cdcacm_enable(BOARD_USB_DISC_DEV, BOARD_USB_DISC_BIT);
+#endif
     boardInit();
 }
 
@@ -87,7 +89,17 @@ static void setupFlash(void) {
  * comment above.
  */
 static void setupClocks() {
+#if defined(BOARD_STBee)
+    rcc_clk_init(RCC_CLKSRC_PLL, RCC_PLLSRC_HSE, RCC_PLLMUL_6); // for 12Mhz board (STBee)
+#elif defined(BOARD_STBee2)
+    rcc_clk_init(RCC_CLKSRC_PLL, RCC_PLLSRC_HSE, RCC_PLLMUL_6); // for 12Mhz board (STBee with init SRAM)
+#elif defined(BOARD_STBeeMini)
+    rcc_clk_init(RCC_CLKSRC_PLL, RCC_PLLSRC_HSE, RCC_PLLMUL_6); // for 12Mhz board (STBeeMini)
+#elif defined(BOARD_STM32VLD)
+    rcc_clk_init(RCC_CLKSRC_PLL, RCC_PLLSRC_HSE, RCC_PLLMUL_3); // 24Mhz = 8Mhz x3 (STM32VLD)
+#else
     rcc_clk_init(RCC_CLKSRC_PLL, RCC_PLLSRC_HSE, RCC_PLLMUL_9);
+#endif
     rcc_set_prescaler(RCC_PRESCALER_AHB, RCC_AHB_SYSCLK_DIV_1);
     rcc_set_prescaler(RCC_PRESCALER_APB1, RCC_APB1_HCLK_DIV_2);
     rcc_set_prescaler(RCC_PRESCALER_APB2, RCC_APB2_HCLK_DIV_1);

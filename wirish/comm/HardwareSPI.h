@@ -45,19 +45,33 @@
  * @brief Defines the possible SPI communication speeds.
  */
 typedef enum SPIFrequency {
+#if defined( BOARD_STM32VLD )
+	/* For STM32VLD */
+	SPI_12MHZ       = 0, /**< 12 MHz */
+    SPI_6MHZ        = 1, /**< 6 MHz */
+    SPI_3MHZ        = 2, /**< 3 MHz */
+    SPI_1_5MHZ      = 3, /**< 1.5 MHz */
+	SPI_DEFAULT_CLOCK = SPI_1_5MHZ,
+    SPI_750KHZ      = 4, /**< 750.000 KHz */
+    SPI_375KHZ      = 5, /**< 375.000 KHz */
+    SPI_187_500KHZ  = 6, /**< 187.500 KHz */
+    SPI_93_75KHZ    = 7, /**<  93.750 KHz */
+#else
     SPI_18MHZ       = 0, /**< 18 MHz */
     SPI_9MHZ        = 1, /**< 9 MHz */
     SPI_4_5MHZ      = 2, /**< 4.5 MHz */
     SPI_2_25MHZ     = 3, /**< 2.25 MHz */
     SPI_1_125MHZ    = 4, /**< 1.125 MHz */
+	SPI_DEFAULT_CLOCK = SPI_1_125MHZ,
     SPI_562_500KHZ  = 5, /**< 562.500 KHz */
     SPI_281_250KHZ  = 6, /**< 281.250 KHz */
     SPI_140_625KHZ  = 7, /**< 140.625 KHz */
+#endif
 } SPIFrequency;
 
 #define MAX_SPI_FREQS 8
 
-#if CYCLES_PER_MICROSECOND != 72
+#if ( CYCLES_PER_MICROSECOND != 72 ) && ( CYCLES_PER_MICROSECOND != 24 )
 /* TODO [0.2.0?] something smarter than this */
 #warning "Unexpected clock speed; SPI frequency calculation will be incorrect"
 #endif

@@ -134,6 +134,14 @@ bool boardUsesPin(uint8 pin);
 #include "maple_RET6.h"
 #elif defined(BOARD_olimex_stm32_h103)
 #include "olimex_stm32_h103.h"
+#elif defined(BOARD_STBee)
+#include "STBee.h"
+#elif defined(BOARD_STBee2)
+#include "STBee2.h"
+#elif defined(BOARD_STBeeMini)
+#include "STBeeMini.h"
+#elif defined(BOARD_STM32VLD)
+#include "STM32VLD.h"
 #else
 /*
  * TODO turn this into a warning so people can:

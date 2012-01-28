@@ -67,8 +67,9 @@ typedef enum afio_exti_port {
     AFIO_EXTI_PB,               /**< Use port B (PBx) pin. */
     AFIO_EXTI_PC,               /**< Use port C (PCx) pin. */
     AFIO_EXTI_PD,               /**< Use port D (PDx) pin. */
+//#ifdef STM32_HIGH_DENSITY
+    AFIO_EXTI_PE,               /**< Use PEx pin. */
 #ifdef STM32_HIGH_DENSITY
-    AFIO_EXTI_PE,               /**< Use port E (PEx) pin. */
     AFIO_EXTI_PF,               /**< Use port F (PFx) pin. */
     AFIO_EXTI_PG,               /**< Use port G (PGx) pin. */
 #endif
@@ -89,9 +90,10 @@ extern gpio_dev gpioc;
 extern gpio_dev* const GPIOC;
 extern gpio_dev gpiod;
 extern gpio_dev* const GPIOD;
-#ifdef STM32_HIGH_DENSITY
+//#ifdef STM32_HIGH_DENSITY
 extern gpio_dev gpioe;
 extern gpio_dev* const GPIOE;
+#ifdef STM32_HIGH_DENSITY
 extern gpio_dev gpiof;
 extern gpio_dev* const GPIOF;
 extern gpio_dev gpiog;
@@ -106,9 +108,10 @@ extern gpio_dev* const GPIOG;
 #define GPIOC_BASE                      ((struct gpio_reg_map*)0x40011000)
 /** GPIO port D register map base pointer */
 #define GPIOD_BASE                      ((struct gpio_reg_map*)0x40011400)
-#ifdef STM32_HIGH_DENSITY
+//#ifdef STM32_HIGH_DENSITY
 /** GPIO port E register map base pointer */
 #define GPIOE_BASE                      ((struct gpio_reg_map*)0x40011800)
+#ifdef STM32_HIGH_DENSITY
 /** GPIO port F register map base pointer */
 #define GPIOF_BASE                      ((struct gpio_reg_map*)0x40011C00)
 /** GPIO port G register map base pointer */

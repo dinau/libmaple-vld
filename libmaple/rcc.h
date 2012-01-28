@@ -456,9 +456,10 @@ typedef enum rcc_clk_id {
     RCC_CRC,
     RCC_FLITF,
     RCC_SRAM,
+    RCC_GPIOE, // moved
     RCC_USB,
 #if defined(STM32_HIGH_DENSITY) || defined(STM32_XL_DENSITY)
-    RCC_GPIOE,
+//    RCC_GPIOE,
     RCC_GPIOF,
     RCC_GPIOG,
     RCC_UART4,

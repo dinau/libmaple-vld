@@ -1,0 +1,13 @@
+# 
+# Copyright (C) 2011, audin.#
+# This file is under the MIT License.
+#
+
+# SCons script
+# Build script for 'Fake avrdude.exe' which shoud be compiled with gcc.
+# 2011/11 Modified by audin.
+# 2011/09 Created by audin.
+import os
+env = Environment( tools = ['mingw'], ENV = os.environ, CCFLAGS='-std=c99' )
+exe = env.Program('avrdude','avrdude.c')
+env.Command( None, exe, 'strip $SOURCE')

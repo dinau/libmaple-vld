@@ -65,18 +65,19 @@ gpio_dev gpiod = {
     .clk_id    = RCC_GPIOD,
     .exti_port = AFIO_EXTI_PD,
 };
-/** GPIO port D device. */
+/** GPIO port D device. */  
 gpio_dev* const GPIOD = &gpiod;
 
-#ifdef STM32_HIGH_DENSITY
 gpio_dev gpioe = {
     .regs      = GPIOE_BASE,
     .clk_id    = RCC_GPIOE,
     .exti_port = AFIO_EXTI_PE,
 };
 /** GPIO port E device. */
+/* Midrange micros have GPIOE */
 gpio_dev* const GPIOE = &gpioe;
 
+#ifdef STM32_HIGH_DENSITY
 gpio_dev gpiof = {
     .regs      = GPIOF_BASE,
     .clk_id    = RCC_GPIOF,
@@ -118,8 +119,8 @@ void gpio_init_all(void) {
     gpio_init(GPIOB);
     gpio_init(GPIOC);
     gpio_init(GPIOD);
+    gpio_init(GPIOE); /* Midrange micros have GPIOE */
 #ifdef STM32_HIGH_DENSITY
-    gpio_init(GPIOE);
     gpio_init(GPIOF);
     gpio_init(GPIOG);
 #endif

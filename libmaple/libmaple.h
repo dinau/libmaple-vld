@@ -42,9 +42,26 @@
  *
  * FIXME this has no business being here
  */
+
+#if defined(BOARD_STBee) || defined(BOARD_STBee2)
+ #define USER_ADDR_ROM 0x08003000
+ #define USER_ADDR_RAM 0x20000C00
+ #define STACK_TOP     0x20000800
+#elif defined(BOARD_STBeeMini)
+ #define USER_ADDR_ROM 0x08003000
+ #define USER_ADDR_RAM 0x20000C00
+ #define STACK_TOP     0x20000800
+#elif defined(BOARD_STM32VLD)
+ #define USER_ADDR_ROM 0x08000000
+ #define USER_ADDR_RAM 0x20000C00
+ #define STACK_TOP     0x20000800
+#else
 #define USER_ADDR_ROM 0x08005000
 #define USER_ADDR_RAM 0x20000C00
 #define STACK_TOP     0x20000800
+#endif
+ 
+
 
 #endif
 

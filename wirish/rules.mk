@@ -22,6 +22,10 @@ cppSRCS_$(d) := wirish_math.cpp		 \
                 boards/maple_native.cpp	 \
                 boards/maple_RET6.cpp	 \
                 boards/olimex_stm32_h103.cpp \
+				boards/STBee.cpp \
+				boards/STBee2.cpp \
+				boards/STBeeMini.cpp \
+				boards/STM32VLD.cpp \
                 comm/HardwareSerial.cpp	 \
                 comm/HardwareSPI.cpp	 \
 		HardwareTimer.cpp	 \

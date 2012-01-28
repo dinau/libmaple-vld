@@ -1,0 +1,37 @@
+syntax: glob
+*.html
+*.pyc
+*.s19
+*.d
+*.o
+*.bak
+*.map
+*.hex
+*.elf
+*.patch
+*~
+*.rej
+*.org
+*XTAGS
+*.bin
+*.lss
+*.lst
+*.sym
+*.dll
+
+*.jar
+*.png
+*.jpg
+*.gif
+*.dblite
+err.txt
+GPATH
+GRTAGS
+GTAGS
+tags
+
+syntax: regexp
+libraries/GlcdSt7565Maple_v01_201109
+build
+00
+docs
